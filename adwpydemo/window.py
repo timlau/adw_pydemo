@@ -48,6 +48,8 @@ class MainWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
+        self.style_manager = Adw.StyleManager().get_default()
+        # print(dir(self.style_manager))
         # Setup Headerbar
         self.headerbar = Adw.HeaderBar()
         self.btn_menu = Gtk.MenuButton()
@@ -58,7 +60,14 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_flap.props.icon_name = 'sidebar-show-right-rtl-symbolic'
         self.btn_flap.set_active(True)
         self.btn_flap.connect('toggled', self.on_flap_toggled)
+        self.btn_flap.set_tooltip_text("Show/Hide Sidebar")
         self.headerbar.pack_start(self.btn_flap)
+        # Light/dark switcher
+        btn = Gtk.Button()
+        btn.props.icon_name = 'weather-clear-symbolic'
+        btn.set_tooltip_text('Switch Light/Dark theme')
+        btn.connect('clicked', self.on_color_switch)
+        self.headerbar.pack_start(btn)
         # setup menu actions
         self.create_action('new', self.menu_handler)
         self.create_action('about', self.menu_handler)
@@ -181,6 +190,12 @@ class MainWindow(Adw.ApplicationWindow):
             row.add_suffix(switch)
             group.add(row)
         return page
+    
+    def on_color_switch(self, widget):
+        if self.style_manager.get_dark():
+            self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+        else:
+            self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
     
     def on_leaflet_forward(self, widget):
         if self.leaflet.get_folded():
