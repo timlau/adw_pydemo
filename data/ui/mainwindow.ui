@@ -2,7 +2,10 @@
 <interface>
     <requires lib="gtk" version="4.0" />
     <template class="MainWindow" parent="AdwApplicationWindow">
-        <child>
+        <property name="title" translatable="yes">Adwaita Python Demo</property>
+        <property name="default_width">800</property>
+        <property name="default_height">576</property>
+            <child>
             <object class="GtkBox" id="main_content">
                 <property name="orientation">vertical</property>
                 <child>
@@ -11,7 +14,6 @@
             </object>
         </child>
     </template>
-
     <!-- Main App menu -->
     <menu id='app_menu'>
         <section>
