@@ -9,7 +9,6 @@ VERSION = '@VERSION@'
 pkgdatadir = '@DATA_DIR@'
 localedir = '@LOCALE_DIR@'
 
-sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('adwpydemo', localedir)
 
