@@ -39,21 +39,22 @@ def set_margin(widget, value):
     widget.props.margin_end = 10
 
 
-@Gtk.Template(resource_path=f'{Constants.PATHID}/ui/mainwindow.ui')
 class MainWindow(Adw.ApplicationWindow):
-    __gtype_name__ = 'MainWindow'
-
-    main_content = Gtk.Template.Child()
-    app_menu = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
+        self.main_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.set_content(self.main_content)
         self.style_manager = Adw.StyleManager().get_default()
+        
         # print(dir(self.style_manager))
         # Setup Headerbar
         self.headerbar = Adw.HeaderBar()
         self.btn_menu = Gtk.MenuButton()
         self.btn_menu.props.icon_name = 'open-menu-symbolic'
+        builder = Gtk.Builder()
+        builder.add_from_resource(f'{Constants.PATHID}/ui/appmenu.ui')
+        self.app_menu = builder.get_object('app_menu')
         self.btn_menu.set_menu_model(self.app_menu)
         # Flap toggle
         self.btn_flap = Gtk.ToggleButton()
