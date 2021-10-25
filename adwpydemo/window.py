@@ -28,7 +28,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.btn_menu.set_menu_model(self.app_menu)
         # Flap toggle
         self.btn_flap = Gtk.ToggleButton()
-        self.btn_flap.props.icon_name = 'go-next-symbolic'
+        self.btn_flap.props.icon_name = 'sidebar-show-right-rtl-symbolic'
         self.btn_flap.set_active(True)
         self.btn_flap.connect('toggled', self.on_flap_toggled)
         self.headerbar.pack_start(self.btn_flap)
@@ -40,7 +40,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.main_content.append(self.headerbar)
         self.flap = Adw.Flap()
         self.stack = Gtk.Stack()
-        self.page1 = self.add_page('page1', 'Page 1')
+        self.page1 = self.add_page('page1', 'ViewStack', self.add_viewswitcher())
         self.page2 = self.add_page('page2', 'Page 2')
         self.page3 = self.add_page('page3', 'Page 3')
         self.page4 = self.add_page('page4', 'Page 4')
@@ -67,13 +67,34 @@ class MainWindow(Adw.ApplicationWindow):
         # self.leaflet.append(self.btn_end)
 
 
-    def add_page(self, name, title):
-        box = Gtk.Box()
-        lbl = get_label(title)
-        box.append(lbl)
-        page = self.stack.add_named(box, name)
+    def add_page(self, name, title, widget = None):
+        if not widget:
+            widget = Gtk.Box()
+            lbl = get_label(title)
+            widget.append(lbl)
+        page = self.stack.add_named(widget, name)
         page.set_title(title)
         return page
+    
+    def add_viewswitcher(self):
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        view_stack = Adw.ViewStack()
+        view_switch = Adw.ViewSwitcher()
+        view_switch.set_stack(view_stack)
+        view_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
+        for num in ['1','2','3']:
+            box = Gtk.Box()
+            title = f'Page {num}'
+            name = f'page{num}'
+            lbl = get_label(f'This is a ViewStack page  ({num})')
+            box.append(lbl)
+            page = view_stack.add_named(box, name)
+            page.set_title(title)
+            page.set_icon_name('media-record-symbolic')
+        main_box.append(view_switch)
+        main_box.append(view_stack)
+        return main_box
+        
         
     def on_flap_toggled(self, widget):
         self.flap.set_reveal_flap(not self.flap.get_reveal_flap())
