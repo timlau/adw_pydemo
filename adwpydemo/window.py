@@ -12,6 +12,24 @@ def get_label(text):
     lbl.props.vexpand = True
     return lbl
 
+def get_label_top(text):
+    lbl = Gtk.Label()
+    lbl.set_markup(text)
+    lbl.props.halign = Gtk.Align.START
+    lbl.props.valign = Gtk.Align.START
+    lbl.props.hexpand = True
+    lbl.props.vexpand = False
+    return lbl
+
+def get_label_bottom(text):
+    lbl = Gtk.Label()
+    lbl.set_markup(text)
+    lbl.props.halign = Gtk.Align.END
+    lbl.props.valign = Gtk.Align.END
+    lbl.props.hexpand = True
+    lbl.props.vexpand = False
+    return lbl
+
 @Gtk.Template(resource_path=f'{Constants.PATHID}/ui/mainwindow.ui')
 class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MainWindow'
@@ -41,7 +59,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.flap = Adw.Flap()
         self.stack = Gtk.Stack()
         self.page1 = self.add_page('page1', 'ViewStack', self.add_viewswitcher())
-        self.page2 = self.add_page('page2', 'Page 2')
+        self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
         self.page3 = self.add_page('page3', 'Page 3')
         self.page4 = self.add_page('page4', 'Page 4')
         self.stack_switch = Gtk.StackSidebar()
@@ -50,21 +68,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.flap.set_separator(Gtk.Separator())
         self.flap.set_flap(self.stack_switch)
         self.main_content.append(self.flap)
-        # self.btn_start = Gtk.Button()
-        # self.btn_start.set_label("Hallo World, This is the Start Button")
-        # self.btn_start.props.halign = Gtk.Align.START
-        # self.btn_start.props.valign = Gtk.Align.START
-        # self.btn_start.props.vexpand = True
-        # self.btn_start.props.hexpand = True
-
-        # self.leaflet.append(self.btn_start)
-        # self.btn_end = Gtk.Button()
-        # self.btn_end.set_label("Hallo World, This is the End Button")
-        # self.btn_end.props.halign = Gtk.Align.END
-        # self.btn_end.props.valign = Gtk.Align.END
-        # self.btn_end.props.vexpand = True
-        # self.btn_end.props.hexpand = True
-        # self.leaflet.append(self.btn_end)
 
 
     def add_page(self, name, title, widget = None):
@@ -83,18 +86,45 @@ class MainWindow(Adw.ApplicationWindow):
         view_switch.set_stack(view_stack)
         view_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
         for num in ['1','2','3']:
-            box = Gtk.Box()
+            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             title = f'Page {num}'
             name = f'page{num}'
+            box.append(Gtk.Separator())
+            lbl = get_label_top('<b>⇧ This is a ViewSwitcher</b>')
+            box.append(lbl)
             lbl = get_label(f'This is a ViewStack page  ({num})')
+            box.append(lbl)
+            lbl = get_label_bottom('<b>This is a ViewSwitcherBar ⇩</b>')
             box.append(lbl)
             page = view_stack.add_named(box, name)
             page.set_title(title)
             page.set_icon_name('media-record-symbolic')
         main_box.append(view_switch)
         main_box.append(view_stack)
+        view_switchbar = Adw.ViewSwitcherBar()
+        view_switchbar.set_stack(view_stack)
+        view_switchbar.set_reveal(True)
+        main_box.append(view_switchbar)
         return main_box
-        
+
+    def add_leaflet(self):
+        leaflet = Adw.Leaflet()
+        btn_start = Gtk.Button()
+        btn_start.set_label("This is an Left/Start Button")
+        btn_start.props.halign = Gtk.Align.START
+        btn_start.props.valign = Gtk.Align.START
+        btn_start.props.vexpand = True
+        btn_start.props.hexpand = True
+
+        leaflet.append(btn_start)
+        btn_end = Gtk.Button()
+        btn_end.set_label("This is a Right/End Button")
+        btn_end.props.halign = Gtk.Align.END
+        btn_end.props.valign = Gtk.Align.END
+        btn_end.props.vexpand = True
+        btn_end.props.hexpand = True
+        leaflet.append(btn_end)
+        return leaflet        
         
     def on_flap_toggled(self, widget):
         self.flap.set_reveal_flap(not self.flap.get_reveal_flap())
