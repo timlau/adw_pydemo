@@ -32,6 +32,12 @@ def get_label_bottom(text):
     lbl.props.vexpand = False
     return lbl
 
+def set_margin(widget, value):
+    widget.props.margin_top = 10
+    widget.props.margin_bottom = 10
+    widget.props.margin_start = 10
+    widget.props.margin_end = 10
+
 
 @Gtk.Template(resource_path=f'{Constants.PATHID}/ui/mainwindow.ui')
 class MainWindow(Adw.ApplicationWindow):
@@ -64,8 +70,8 @@ class MainWindow(Adw.ApplicationWindow):
         self.page1 = self.add_page(
             'page1', 'ViewStack', self.add_viewswitcher())
         self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
-        self.page3 = self.add_page('page3', 'ActionRow', self.add_listbox())
-        self.page4 = self.add_page('page4', 'Page 4')
+        self.page3 = self.add_page('page3', 'Preferences', self.add_listbox())
+        # self.page4 = self.add_page('page4', 'Page 4')
         self.stack_switch = Gtk.StackSidebar()
         self.stack_switch.set_stack(self.stack)
         self.flap.set_content(self.stack)
@@ -111,26 +117,55 @@ class MainWindow(Adw.ApplicationWindow):
         return main_box
 
     def add_leaflet(self):
-        leaflet = Adw.Leaflet()
-        btn_start = Gtk.Button()
-        btn_start.set_label("This is an Left/Start Button")
-        btn_start.props.halign = Gtk.Align.START
-        btn_start.props.valign = Gtk.Align.START
-        btn_start.props.vexpand = True
-        btn_start.props.hexpand = True
-
-        leaflet.append(btn_start)
-        btn_end = Gtk.Button()
-        btn_end.set_label("This is a Right/End Button")
-        btn_end.props.halign = Gtk.Align.END
-        btn_end.props.valign = Gtk.Align.END
-        btn_end.props.vexpand = True
-        btn_end.props.hexpand = True
-        leaflet.append(btn_end)
-        return leaflet
+        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        set_margin(box,10)
+        btn = Gtk.Button()
+        btn.set_icon_name('media-seek-forward-symbolic')
+        btn.props.halign = Gtk.Align.START
+        btn.props.valign = Gtk.Align.START
+        btn.props.vexpand = False
+        btn.props.hexpand = False
+        btn.connect('clicked', self.on_leaflet_forward)
+        box.append(btn)
+        
+        btn = Gtk.Button()
+        btn.set_icon_name('media-seek-backward-symbolic')
+        btn.props.halign = Gtk.Align.END
+        btn.props.valign = Gtk.Align.START
+        btn.props.vexpand = False
+        btn.props.hexpand = True
+        btn.connect('clicked', self.on_leaflet_back)
+        box.append(btn)
+        main_box.append(box)
+        main_box.append(Gtk.Separator())
+        self.leaflet = Adw.Leaflet()
+        btn = Gtk.Button()
+        btn.set_label("This is an Left/Start Button")
+        btn.props.halign = Gtk.Align.START
+        btn.props.valign = Gtk.Align.START
+        btn.props.vexpand = True
+        btn.props.hexpand = True
+        set_margin(btn,10)
+        self.leaflet.append(btn)
+        btn = Gtk.Button()
+        btn.set_label("This is a Right/End Button")
+        btn.props.halign = Gtk.Align.END
+        btn.props.valign = Gtk.Align.END
+        btn.props.vexpand = True
+        btn.props.hexpand = True
+        set_margin(btn,10)
+        self.leaflet.append(btn)
+        main_box.append(self.leaflet)
+        return main_box
 
     def add_listbox(self):
-        listbox = Gtk.ListBox()
+        page = Adw.PreferencesPage()
+        page.set_title('This is an PreferencePage')
+        group = Adw.PreferencesGroup()
+        group.set_title('This is an PreferenceGroup')
+        group.set_description("It contains a number of ActionRow's")
+        page.add(group)
         for x in range(10):
             title = f'Action {x+1}'
             row = Adw.ActionRow()
@@ -144,8 +179,16 @@ class MainWindow(Adw.ApplicationWindow):
             switch.props.vexpand = False
             switch.set_active(x % 2 == 0)
             row.add_suffix(switch)
-            listbox.append(row)
-        return listbox
+            group.add(row)
+        return page
+    
+    def on_leaflet_forward(self, widget):
+        if self.leaflet.get_folded():
+            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+        
+    def on_leaflet_back(self, widget):
+        if self.leaflet.get_folded():
+            self.leaflet.navigate(Adw.NavigationDirection.BACK)
 
     def on_flap_toggled(self, widget):
         self.flap.set_reveal_flap(not self.flap.get_reveal_flap())
