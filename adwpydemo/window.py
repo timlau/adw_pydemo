@@ -12,6 +12,7 @@ def get_label(text):
     lbl.props.vexpand = True
     return lbl
 
+
 def get_label_top(text):
     lbl = Gtk.Label()
     lbl.set_markup(text)
@@ -21,6 +22,7 @@ def get_label_top(text):
     lbl.props.vexpand = False
     return lbl
 
+
 def get_label_bottom(text):
     lbl = Gtk.Label()
     lbl.set_markup(text)
@@ -29,6 +31,7 @@ def get_label_bottom(text):
     lbl.props.hexpand = True
     lbl.props.vexpand = False
     return lbl
+
 
 @Gtk.Template(resource_path=f'{Constants.PATHID}/ui/mainwindow.ui')
 class MainWindow(Adw.ApplicationWindow):
@@ -58,9 +61,10 @@ class MainWindow(Adw.ApplicationWindow):
         self.main_content.append(self.headerbar)
         self.flap = Adw.Flap()
         self.stack = Gtk.Stack()
-        self.page1 = self.add_page('page1', 'ViewStack', self.add_viewswitcher())
+        self.page1 = self.add_page(
+            'page1', 'ViewStack', self.add_viewswitcher())
         self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
-        self.page3 = self.add_page('page3', 'Page 3')
+        self.page3 = self.add_page('page3', 'ActionRow', self.add_listbox())
         self.page4 = self.add_page('page4', 'Page 4')
         self.stack_switch = Gtk.StackSidebar()
         self.stack_switch.set_stack(self.stack)
@@ -69,8 +73,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.flap.set_flap(self.stack_switch)
         self.main_content.append(self.flap)
 
-
-    def add_page(self, name, title, widget = None):
+    def add_page(self, name, title, widget=None):
         if not widget:
             widget = Gtk.Box()
             lbl = get_label(title)
@@ -78,14 +81,14 @@ class MainWindow(Adw.ApplicationWindow):
         page = self.stack.add_named(widget, name)
         page.set_title(title)
         return page
-    
+
     def add_viewswitcher(self):
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         view_stack = Adw.ViewStack()
         view_switch = Adw.ViewSwitcher()
         view_switch.set_stack(view_stack)
         view_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
-        for num in ['1','2','3']:
+        for num in ['1', '2', '3']:
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             title = f'Page {num}'
             name = f'page{num}'
@@ -124,8 +127,26 @@ class MainWindow(Adw.ApplicationWindow):
         btn_end.props.vexpand = True
         btn_end.props.hexpand = True
         leaflet.append(btn_end)
-        return leaflet        
-        
+        return leaflet
+
+    def add_listbox(self):
+        listbox = Gtk.ListBox()
+        for x in range(10):
+            title = f'Action {x+1}'
+            row = Adw.ActionRow()
+            row.set_title(title)
+            row.set_subtitle("This is an action, named {title}")
+            row.set_icon_name('find-location-symbolic')
+            switch = Gtk.Switch()
+            switch.props.halign = Gtk.Align.CENTER
+            switch.props.valign = Gtk.Align.CENTER
+            switch.props.hexpand = False
+            switch.props.vexpand = False
+            switch.set_active(x % 2 == 0)
+            row.add_suffix(switch)
+            listbox.append(row)
+        return listbox
+
     def on_flap_toggled(self, widget):
         self.flap.set_reveal_flap(not self.flap.get_reveal_flap())
 
