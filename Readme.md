@@ -6,10 +6,24 @@ Here is the official libadwaita docs.
 https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/
 
 ## Build & Run
-Run the following to build and install the application on your system
-```
+Run the following to build, install & run the application on your system
+```bash
 ./local.sh
 ```
+
+## Flatpak
+
+Build & Run as flatpak
+
+```bash
+flatpak install flathub org.gnome.Platform//41 org.gnome.Sdk//41
+
+flatpak-builder --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
+flatpak-builder --user --install --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
+
+flatpak run dk.rasmil.AdwPyDemo
+```
+
 
 ## Screenshots
 
