@@ -13,14 +13,19 @@ Run the following to build, install & run the application on your system
 
 ## Flatpak
 
-Build & Run as flatpak
-
+Install needed flatpak Platform & SDK
 ```bash
 flatpak install flathub org.gnome.Platform//41 org.gnome.Sdk//41
+```
 
+Build flatpak & install it
+```bash
 flatpak-builder --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
 flatpak-builder --user --install --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
+```
 
+Run the flatpak
+```bash
 flatpak run dk.rasmil.AdwPyDemo
 ```
 
