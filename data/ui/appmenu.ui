@@ -9,16 +9,18 @@
                 <attribute name='action'>win.new</attribute>
             </item>
             <item>
-                <attribute name='label' translatable='yes'>_About</attribute>
-                <attribute name='action'>win.about</attribute>
+                <attribute name='label' translatable='yes'>_Quit</attribute>
+                <attribute name='action'>win.quit</attribute>
             </item>
+        </section>
+        <section>            
             <item>
                 <attribute name='label' translatable='yes'>_Shortcuts</attribute>
                 <attribute name='action'>win.show-help-overlay</attribute>
             </item>
             <item>
-                <attribute name='label' translatable='yes'>_Quit</attribute>
-                <attribute name='action'>win.quit</attribute>
+                <attribute name='label' translatable='yes'>_About</attribute>
+                <attribute name='action'>win.about</attribute>
             </item>
         </section>
     </menu>

@@ -1,42 +1,7 @@
 from gi.repository import Gtk, Gio, Adw, GLib
 
 from adwpydemo.const import Constants
-
-
-def get_label(text):
-    lbl = Gtk.Label()
-    lbl.set_text(text)
-    lbl.props.halign = Gtk.Align.CENTER
-    lbl.props.valign = Gtk.Align.CENTER
-    lbl.props.hexpand = True
-    lbl.props.vexpand = True
-    return lbl
-
-
-def get_label_top(text):
-    lbl = Gtk.Label()
-    lbl.set_markup(text)
-    lbl.props.halign = Gtk.Align.START
-    lbl.props.valign = Gtk.Align.START
-    lbl.props.hexpand = True
-    lbl.props.vexpand = False
-    return lbl
-
-
-def get_label_bottom(text):
-    lbl = Gtk.Label()
-    lbl.set_markup(text)
-    lbl.props.halign = Gtk.Align.END
-    lbl.props.valign = Gtk.Align.END
-    lbl.props.hexpand = True
-    lbl.props.vexpand = False
-    return lbl
-
-def set_margin(widget, value):
-    widget.props.margin_top = 10
-    widget.props.margin_bottom = 10
-    widget.props.margin_start = 10
-    widget.props.margin_end = 10
+from adwpydemo.functions import get_label, get_label_bottom, get_label_top, set_margin
 
 
 class MainWindow(Adw.ApplicationWindow):
@@ -46,7 +11,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.main_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.set_content(self.main_content)
         self.style_manager = Adw.StyleManager().get_default()
-        
+
         # print(dir(self.style_manager))
         # Setup Headerbar
         self.headerbar = Adw.HeaderBar()
@@ -110,10 +75,12 @@ class MainWindow(Adw.ApplicationWindow):
             name = f'page{num}'
             box.append(Gtk.Separator())
             lbl = get_label_top('<b>⇧ This is a ViewSwitcher</b>')
+            set_margin(lbl,5)
             box.append(lbl)
             lbl = get_label(f'This is a ViewStack page  ({num})')
             box.append(lbl)
             lbl = get_label_bottom('<b>This is a ViewSwitcherBar ⇩</b>')
+            set_margin(lbl,5)
             box.append(lbl)
             page = view_stack.add_named(box, name)
             page.set_title(title)
@@ -129,7 +96,7 @@ class MainWindow(Adw.ApplicationWindow):
     def add_leaflet(self):
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        set_margin(box,10)
+        set_margin(box, 10)
         btn = Gtk.Button()
         btn.set_icon_name('media-seek-forward-symbolic')
         btn.props.halign = Gtk.Align.START
@@ -138,7 +105,7 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.hexpand = False
         btn.connect('clicked', self.on_leaflet_forward)
         box.append(btn)
-        
+
         btn = Gtk.Button()
         btn.set_icon_name('media-seek-backward-symbolic')
         btn.props.halign = Gtk.Align.END
@@ -156,7 +123,7 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.valign = Gtk.Align.START
         btn.props.vexpand = True
         btn.props.hexpand = True
-        set_margin(btn,10)
+        set_margin(btn, 10)
         self.leaflet.append(btn)
         btn = Gtk.Button()
         btn.set_label("This is a Right/End Button")
@@ -164,7 +131,7 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.valign = Gtk.Align.END
         btn.props.vexpand = True
         btn.props.hexpand = True
-        set_margin(btn,10)
+        set_margin(btn, 10)
         self.leaflet.append(btn)
         main_box.append(self.leaflet)
         return main_box
@@ -180,7 +147,7 @@ class MainWindow(Adw.ApplicationWindow):
             title = f'Action {x+1}'
             row = Adw.ActionRow()
             row.set_title(title)
-            row.set_subtitle("This is an action, named {title}")
+            row.set_subtitle(f"This is an action, named {title}")
             row.set_icon_name('find-location-symbolic')
             switch = Gtk.Switch()
             switch.props.halign = Gtk.Align.CENTER
@@ -191,17 +158,17 @@ class MainWindow(Adw.ApplicationWindow):
             row.add_suffix(switch)
             group.add(row)
         return page
-    
+
     def on_color_switch(self, widget):
         if self.style_manager.get_dark():
             self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         else:
             self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
-    
+
     def on_leaflet_forward(self, widget):
         if self.leaflet.get_folded():
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
-        
+
     def on_leaflet_back(self, widget):
         if self.leaflet.get_folded():
             self.leaflet.navigate(Adw.NavigationDirection.BACK)
