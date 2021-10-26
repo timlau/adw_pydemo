@@ -18,16 +18,21 @@ cleanup:
     - "/share/pkgconfig"
     - "*.la"
     - "*.a"
-
+build-options:
+    build-args:
+    - --share=network
 modules:
     - name: libadwaita
       buildsystem: meson
       sources:
           - type: git
+            branch: main
+            disable-submodules: false
             url: https://gitlab.gnome.org/GNOME/libadwaita.git
     - name: adwpydemo
       builddir: true
       buildsystem: meson
       sources:
           - type: git
+            branch: main
             url: https://github.com/timlau/adw_pydemo.git
