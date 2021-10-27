@@ -18,17 +18,21 @@ Install needed flatpak Platform & SDK
 flatpak install flathub org.gnome.Platform//41 org.gnome.Sdk//41
 ```
 
-Build flatpak & install it
+Build flatpak
 ```bash
 flatpak-builder --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
-flatpak-builder --user --install --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
 ```
 
-Run the flatpak
+Run the flatpak 
 ```bash
+flatpak-builder --run .flatpak/repo dk.rasmil.AdwPyDemo.yml adwpydemo
+```
+
+Install to local system & Run it
+```bash
+flatpak-builder --user --install --force-clean .flatpak/repo dk.rasmil.AdwPyDemo.yml
 flatpak run dk.rasmil.AdwPyDemo
 ```
-
 
 ## Screenshots
 
