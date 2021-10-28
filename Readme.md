@@ -8,7 +8,7 @@ https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/
 ## Version
 
 * Version 0.1.0 - The ui is build direct in python : [ver_0.1.0](https://github.com/timlau/adw_pydemo/tree/ver_0.1.0)
-* Version 0.2.0 - The ui is build using an .ui file and Gtk.Template
+* Version 0.2.0 - The ui is build using an .ui file and [Gtk.Template](https://pygobject.readthedocs.io/en/latest/guide/gtk_template.html) 
 
 ## Build & Run
 Run the following to build, install & run the application on your system
