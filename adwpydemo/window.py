@@ -146,6 +146,7 @@ class MainWindow(Adw.ApplicationWindow):
         if self.leaflet.get_folded():
             self.leaflet.navigate(Adw.NavigationDirection.BACK)
 
+    @Gtk.Template.Callback()
     def on_flap_toggled(self, widget):
         self.flap.set_reveal_flap(not self.flap.get_reveal_flap())
 

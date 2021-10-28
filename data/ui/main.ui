@@ -13,8 +13,14 @@
         <child>
           <object class="AdwHeaderBar">
             <child type="start">
-              <object class="GtkButton" id="color_scheme_button">
+              <object class="GtkToggleButton" id="flap_toggle">
                 <property name="icon-name">sidebar-show-right-rtl-symbolic</property>
+                <signal name="toggled" handler="on_flap_toggled" swapped="no" />
+              </object>
+            </child>
+            <child type="start">
+              <object class="GtkButton" id="color_scheme_button">
+                <property name="icon-name">weather-clear-symbolic</property>
                 <signal name="clicked" handler="on_color_switch" swapped="no" />
               </object>
             </child>
@@ -32,7 +38,7 @@
               <object class="GtkStack" id="stack">
                 <child>
                   <placeholder />
-                  
+
                 </child>
               </object>
             </child>
@@ -40,8 +46,8 @@
               <object class="GtkSeparator" />
             </child>
             <child type="flap">
-              <object class="GtkStackSidebar" id="stack_switch"> 
-              <property name="stack">stack</property>
+              <object class="GtkStackSidebar" id="stack_switch">
+                <property name="stack">stack</property>
               </object>
             </child>
           </object>
