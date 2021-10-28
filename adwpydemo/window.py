@@ -7,12 +7,15 @@ from adwpydemo.functions import get_label, get_label_bottom, get_label_top, set_
 @Gtk.Template(resource_path=f'{Constants.PATHID}/ui/main.ui')
 class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = "MainWindow"
-    
+
     main_content = Gtk.Template.Child()
     flap = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     stack_switch = Gtk.Template.Child()
-    
+    page1_box  = Gtk.Template.Child()
+    page1_switch  = Gtk.Template.Child()
+    page1_content  = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
         self.style_manager = Adw.StyleManager().get_default()
@@ -36,33 +39,27 @@ class MainWindow(Adw.ApplicationWindow):
         return page
 
     def add_viewswitcher(self):
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        view_stack = Adw.ViewStack()
-        view_switch = Adw.ViewSwitcher()
-        view_switch.set_stack(view_stack)
-        view_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
+        self.page1_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
         for num in ['1', '2', '3']:
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             title = f'Page {num}'
             name = f'page{num}'
             box.append(Gtk.Separator())
             lbl = get_label_top('<b>⇧ This is a ViewSwitcher</b>')
-            set_margin(lbl,5)
+            set_margin(lbl, 5)
             box.append(lbl)
             lbl = get_label(f'This is a ViewStack page  ({num})')
             box.append(lbl)
             lbl = get_label_bottom('<b>This is a ViewSwitcherBar ⇩</b>')
-            set_margin(lbl,5)
+            set_margin(lbl, 5)
             box.append(lbl)
-            page = view_stack.add_named(box, name)
+            page = self.page1_content.add_named(box, name)
             page.set_title(title)
             page.set_icon_name('media-record-symbolic')
-        main_box.append(view_switch)
-        main_box.append(view_stack)
         view_switchbar = Adw.ViewSwitcherBar()
         view_switchbar.set_stack(view_stack)
         view_switchbar.set_reveal(True)
-        main_box.append(view_switchbar)
+        self.page1_box.append(view_switchbar)
         return main_box
 
     def add_leaflet(self):

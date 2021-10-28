@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk" version="4.0" />
   <requires lib="libadwaita" version="1.0" />
@@ -37,8 +36,25 @@
             <child type="content">
               <object class="GtkStack" id="stack">
                 <child>
+                  <object class="GtkBox" id="page1_box">
+                    <property name="orientation">vertical</property>
+                    <child>
+                    <object class="AdwViewSwitcher" id="page1_switch">
+                    <property name="stack">page1_content</property>  
+                    </object>                      
+                    </child>
+                    <child>
+                      <object class="AdwView" id="page1_content">
+                        <child>
+                          <placeholder />
+                        </child>        
+                      </object>
+                    </child>
+                  </object>
+                  
+                </child>                
+                <child>
                   <placeholder />
-
                 </child>
               </object>
             </child>
