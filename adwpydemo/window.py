@@ -24,8 +24,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('new', self.menu_handler)
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
-        self.page1 = self.add_page(
-            'page1', 'ViewStack', self.add_viewswitcher())
+        self.add_viewswitcher()
         self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
         self.page3 = self.add_page('page3', 'Preferences', self.add_listbox())
 
@@ -56,11 +55,10 @@ class MainWindow(Adw.ApplicationWindow):
             page = self.page1_content.add_named(box, name)
             page.set_title(title)
             page.set_icon_name('media-record-symbolic')
-        view_switchbar = Adw.ViewSwitcherBar()
-        view_switchbar.set_stack(view_stack)
-        view_switchbar.set_reveal(True)
-        self.page1_box.append(view_switchbar)
-        return main_box
+        # view_switchbar = Adw.ViewSwitcherBar()
+        # view_switchbar.set_stack(self.page1_content)
+        # view_switchbar.set_reveal(True)
+        # self.page1_box.append(view_switchbar)
 
     def add_leaflet(self):
         main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)

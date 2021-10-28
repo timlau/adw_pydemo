@@ -36,23 +36,34 @@
             <child type="content">
               <object class="GtkStack" id="stack">
                 <child>
-                  <object class="GtkBox" id="page1_box">
-                    <property name="orientation">vertical</property>
-                    <child>
-                    <object class="AdwViewSwitcher" id="page1_switch">
-                    <property name="stack">page1_content</property>  
-                    </object>                      
-                    </child>
-                    <child>
-                      <object class="AdwView" id="page1_content">
+                  <object class="GtkStackPage">
+                    <property name="name">page1</property>
+                    <property name="title">ViewStack</property>
+                    <property name="child">
+                      <object class="GtkBox" id="page1_box">
+                        <property name="orientation">vertical</property>
                         <child>
-                          <placeholder />
-                        </child>        
+                          <object class="AdwViewSwitcher" id="page1_switch">
+                            <property name="stack">page1_content</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwViewStack" id="page1_content">
+                            <child>
+                              <placeholder />
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwViewSwitcherBar">
+                            <property name="stack">page1_content</property>
+                            <property name="reveal">True</property>
+                          </object>
+                        </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
-                  
-                </child>                
+                </child>
                 <child>
                   <placeholder />
                 </child>
