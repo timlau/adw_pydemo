@@ -4,55 +4,27 @@ from adwpydemo.const import Constants
 from adwpydemo.functions import get_label, get_label_bottom, get_label_top, set_margin
 
 
+@Gtk.Template(resource_path=f'{Constants.PATHID}/ui/main.ui')
 class MainWindow(Adw.ApplicationWindow):
-
+    __gtype_name__ = "MainWindow"
+    
+    main_content = Gtk.Template.Child()
+    flap = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
+    stack_switch = Gtk.Template.Child()
+    
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
-        self.main_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.set_content(self.main_content)
         self.style_manager = Adw.StyleManager().get_default()
 
-        # print(dir(self.style_manager))
-        # Setup Headerbar
-        self.headerbar = Adw.HeaderBar()
-        self.btn_menu = Gtk.MenuButton()
-        self.btn_menu.props.icon_name = 'open-menu-symbolic'
-        builder = Gtk.Builder()
-        builder.add_from_resource(f'{Constants.PATHID}/ui/appmenu.ui')
-        self.app_menu = builder.get_object('app_menu')
-        self.btn_menu.set_menu_model(self.app_menu)
-        # Flap toggle
-        self.btn_flap = Gtk.ToggleButton()
-        self.btn_flap.props.icon_name = 'sidebar-show-right-rtl-symbolic'
-        self.btn_flap.set_active(True)
-        self.btn_flap.connect('toggled', self.on_flap_toggled)
-        self.btn_flap.set_tooltip_text("Show/Hide Sidebar")
-        self.headerbar.pack_start(self.btn_flap)
-        # Light/dark switcher
-        btn = Gtk.Button()
-        btn.props.icon_name = 'weather-clear-symbolic'
-        btn.set_tooltip_text('Switch Light/Dark theme')
-        btn.connect('clicked', self.on_color_switch)
-        self.headerbar.pack_start(btn)
-        # setup menu actions
+        # # setup menu actions
         self.create_action('new', self.menu_handler)
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
-        self.headerbar.pack_end(self.btn_menu)
-        self.main_content.append(self.headerbar)
-        self.flap = Adw.Flap()
-        self.stack = Gtk.Stack()
         self.page1 = self.add_page(
             'page1', 'ViewStack', self.add_viewswitcher())
         self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
         self.page3 = self.add_page('page3', 'Preferences', self.add_listbox())
-        # self.page4 = self.add_page('page4', 'Page 4')
-        self.stack_switch = Gtk.StackSidebar()
-        self.stack_switch.set_stack(self.stack)
-        self.flap.set_content(self.stack)
-        self.flap.set_separator(Gtk.Separator())
-        self.flap.set_flap(self.stack_switch)
-        self.main_content.append(self.flap)
 
     def add_page(self, name, title, widget=None):
         if not widget:
@@ -159,7 +131,8 @@ class MainWindow(Adw.ApplicationWindow):
             group.add(row)
         return page
 
-    def on_color_switch(self, widget):
+    @Gtk.Template.Callback()
+    def on_color_switch(self, *args):
         if self.style_manager.get_dark():
             self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
         else:
