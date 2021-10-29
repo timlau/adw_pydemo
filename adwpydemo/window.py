@@ -15,6 +15,8 @@ class MainWindow(Adw.ApplicationWindow):
     page1_box  = Gtk.Template.Child()
     page1_switch  = Gtk.Template.Child()
     page1_content  = Gtk.Template.Child()
+    page2_box  = Gtk.Template.Child()
+    page3_box  = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
@@ -25,17 +27,8 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
         self.add_viewswitcher()
-        self.page2 = self.add_page('page2', 'Leaflet', self.add_leaflet())
-        self.page3 = self.add_page('page3', 'Preferences', self.add_listbox())
-
-    def add_page(self, name, title, widget=None):
-        if not widget:
-            widget = Gtk.Box()
-            lbl = get_label(title)
-            widget.append(lbl)
-        page = self.stack.add_named(widget, name)
-        page.set_title(title)
-        return page
+        self.add_leaflet()
+        self.add_listbox()
 
     def add_viewswitcher(self):
         self.page1_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
@@ -61,7 +54,6 @@ class MainWindow(Adw.ApplicationWindow):
         # self.page1_box.append(view_switchbar)
 
     def add_leaflet(self):
-        main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         set_margin(box, 10)
         btn = Gtk.Button()
@@ -81,8 +73,8 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.hexpand = True
         btn.connect('clicked', self.on_leaflet_back)
         box.append(btn)
-        main_box.append(box)
-        main_box.append(Gtk.Separator())
+        self.page2_box.append(box)
+        self.page2_box.append(Gtk.Separator())
         self.leaflet = Adw.Leaflet()
         btn = Gtk.Button()
         btn.set_label("This is an Left/Start Button")
@@ -100,8 +92,8 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.hexpand = True
         set_margin(btn, 10)
         self.leaflet.append(btn)
-        main_box.append(self.leaflet)
-        return main_box
+        self.page2_box.append(self.leaflet)
+        return self.page2_box
 
     def add_listbox(self):
         page = Adw.PreferencesPage()
@@ -124,7 +116,7 @@ class MainWindow(Adw.ApplicationWindow):
             switch.set_active(x % 2 == 0)
             row.add_suffix(switch)
             group.add(row)
-        return page
+        self.page3_box.append(page)
 
     @Gtk.Template.Callback()
     def on_color_switch(self, *args):

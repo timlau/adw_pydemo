@@ -65,7 +65,32 @@
                   </object>
                 </child>
                 <child>
-                  <placeholder />
+                  <object class="GtkStackPage">
+                    <property name="name">page2</property>
+                    <property name="title">Leaflet</property>
+                    <property name="child">
+                      <object class="GtkBox" id="page2_box">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder />
+                        </child>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">page3</property>
+                    <property name="title">Preferences</property>
+                    <property name="child">
+                      <object class="GtkBox" id="page3_box">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder />
+                        </child>
+                      </object>
+                    </property>
+                  </object>
                 </child>
               </object>
             </child>
