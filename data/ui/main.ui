@@ -71,6 +71,9 @@
                                         <property name="vexpand">True</property>
                                         <property name="margin-top">10</property>
                                         <property name="margin-start">10</property>
+                                        <style>
+                                          <class name="btn_view"/>
+                                        </style>
                                       </object>
                                     </child>
                                     <child>

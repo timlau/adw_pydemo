@@ -33,6 +33,8 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
         self.add_page3()
+        self.css_provider = self.load_css()
+        self.add_custom_styling(self.main_content)
 
     def add_page3(self):
         for x in range(5):
@@ -74,9 +76,8 @@ class MainWindow(Adw.ApplicationWindow):
 
     def load_css(self):
         """create a provider for custom styling"""
-        css_provider = None
         css_provider = Gtk.CssProvider()
-        css_path = 'data/main.css'
+        css_path = f'{Constants.PATHID}/ui/main.ui'
         try:
             css_provider.load_from_resource(resource_path=css_path)
         except GLib.Error as e:
@@ -87,6 +88,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     def _add_widget_styling(self, widget):
         if self.css_provider:
+            print(f'Adding style to : {widget.props.css_name}')
             context = widget.get_style_context()
             context.add_provider(
                 self.css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)

@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/dk/rasmil/AdwPyDemo">
     <file preprocess="xml-stripblanks">ui/main.ui</file>
+    <file >css/main.css</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
   </gresource>
 </gresources>
