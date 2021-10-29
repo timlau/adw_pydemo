@@ -45,12 +45,148 @@
                         <child>
                           <object class="AdwViewSwitcher" id="page1_switch">
                             <property name="stack">page1_content</property>
+                            <property name="policy">wide</property>
                           </object>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator"/>
                         </child>
                         <child>
                           <object class="AdwViewStack" id="page1_content">
                             <child>
-                              <placeholder />
+                              <object class="AdwViewStackPage">
+                                <property name="name">page1</property>
+                                <property name="title">Page 1</property>
+                                <property name="icon-name">media-record-symbolic</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">⇧ This is a ViewSwitcher</property>
+                                        <property name="halign">start</property>
+                                        <property name="valign">start</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewStack page #1</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
+                                        <property name="halign">end</property>
+                                        <property name="valign">end</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-bottom">10</property>
+                                        <property name="margin-end">10</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwViewStackPage">
+                                <property name="name">page2</property>
+                                <property name="title">Page 2</property>
+                                <property name="icon-name">media-record-symbolic</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">⇧ This is a ViewSwitcher</property>
+                                        <property name="halign">start</property>
+                                        <property name="valign">start</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewStack page #2</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
+                                        <property name="halign">end</property>
+                                        <property name="valign">end</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-bottom">10</property>
+                                        <property name="margin-end">10</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwViewStackPage">
+                                <property name="name">page3</property>
+                                <property name="title">Page 3</property>
+                                <property name="icon-name">media-record-symbolic</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="orientation">vertical</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">⇧ This is a ViewSwitcher</property>
+                                        <property name="halign">start</property>
+                                        <property name="valign">start</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewStack page #3</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="margin-start">10</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
+                                        <property name="halign">end</property>
+                                        <property name="valign">end</property>
+                                        <property name="hexpand">True</property>
+                                        <property name="vexpand">True</property>
+                                        <property name="margin-bottom">10</property>
+                                        <property name="margin-end">10</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
                             </child>
                           </object>
                         </child>

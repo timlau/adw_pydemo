@@ -30,27 +30,8 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('new', self.menu_handler)
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
-        self.add_page1()
         self.add_page3()
 
-    def add_page1(self):
-        self.page1_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
-        for num in ['1', '2', '3']:
-            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-            title = f'Page {num}'
-            name = f'page{num}'
-            box.append(Gtk.Separator())
-            lbl = get_label_top('<b>⇧ This is a ViewSwitcher</b>')
-            set_margin(lbl, 5)
-            box.append(lbl)
-            lbl = get_label(f'This is a ViewStack page  ({num})')
-            box.append(lbl)
-            lbl = get_label_bottom('<b>This is a ViewSwitcherBar ⇩</b>')
-            set_margin(lbl, 5)
-            box.append(lbl)
-            page = self.page1_content.add_named(box, name)
-            page.set_title(title)
-            page.set_icon_name('media-record-symbolic')
 
     def add_page3(self):
         page = Adw.PreferencesPage()
