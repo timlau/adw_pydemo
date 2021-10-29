@@ -179,20 +179,20 @@
                             <property name="margin-end">10</property>
                             <property name="visible" bind-source="page2_leaflet" bind-property="folded" bind-flags="sync-create" />
                             <child>
-                              <object class="GtkButton" id="btn_leaflet_forward">
-                                <property name="icon-name">media-seek-forward-symbolic</property>
+                              <object class="GtkButton" id="btn_leaflet_backward">
+                                <property name="icon-name">media-seek-backward-symbolic</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
-                                <signal name="clicked" handler="on_leaflet_forward" swapped="no" />
+                                <signal name="clicked" handler="on_leaflet_back" swapped="no" />
                               </object>
                             </child>
                             <child>
-                              <object class="GtkButton" id="btn_leaflet_backward">
-                                <property name="icon-name">media-seek-backward-symbolic</property>
+                              <object class="GtkButton" id="btn_leaflet_forward">
+                                <property name="icon-name">media-seek-forward-symbolic</property>
                                 <property name="halign">end</property>
                                 <property name="valign">end</property>
                                 <property name="hexpand">True</property>
-                                <signal name="clicked" handler="on_leaflet_back" swapped="no" />
+                                <signal name="clicked" handler="on_leaflet_forward" swapped="no" />
                               </object>
                             </child>
                           </object>
