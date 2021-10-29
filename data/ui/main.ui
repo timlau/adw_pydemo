@@ -94,7 +94,12 @@
                           </object>
                         </child>
                         <child>
-                          <placeholder />
+                          <object class="GtkSeparator"/>
+                        </child>
+                        <child>
+                          <object class="AdwLeaflet" id="page2_leaflet">
+                            <placeholder />
+                          </object>
                         </child>
                       </object>
                     </property>

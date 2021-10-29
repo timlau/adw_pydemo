@@ -12,10 +12,14 @@ class MainWindow(Adw.ApplicationWindow):
     flap = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     stack_switch = Gtk.Template.Child()
+    # Page1 widgets
     page1_box  = Gtk.Template.Child()
     page1_switch  = Gtk.Template.Child()
     page1_content  = Gtk.Template.Child()
+    # Page2 widgets
     page2_box  = Gtk.Template.Child()
+    page2_leaflet  = Gtk.Template.Child()    
+    # Page3 widgets
     page3_box  = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -50,8 +54,8 @@ class MainWindow(Adw.ApplicationWindow):
             page.set_icon_name('media-record-symbolic')
 
     def add_page2(self):
-        self.page2_box.append(Gtk.Separator())
-        self.leaflet = Adw.Leaflet()
+        # self.page2_box.append(Gtk.Separator())
+        # self.page2_leaflet = Adw.Leaflet()
         btn = Gtk.Button()
         btn.set_label("This is an Left/Start Button")
         btn.props.halign = Gtk.Align.START
@@ -59,7 +63,7 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.vexpand = True
         btn.props.hexpand = True
         set_margin(btn, 10)
-        self.leaflet.append(btn)
+        self.page2_leaflet.append(btn)
         btn = Gtk.Button()
         btn.set_label("This is a Right/End Button")
         btn.props.halign = Gtk.Align.END
@@ -67,8 +71,8 @@ class MainWindow(Adw.ApplicationWindow):
         btn.props.vexpand = True
         btn.props.hexpand = True
         set_margin(btn, 10)
-        self.leaflet.append(btn)
-        self.page2_box.append(self.leaflet)
+        self.page2_leaflet.append(btn)
+        # self.page2_box.append(self.page2_leaflet)
         return self.page2_box
 
     def add_page3(self):
@@ -103,13 +107,13 @@ class MainWindow(Adw.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def on_leaflet_forward(self, widget):
-        if self.leaflet.get_folded():
-            self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
+        if self.page2_leaflet.get_folded():
+            self.page2_leaflet.navigate(Adw.NavigationDirection.FORWARD)
 
     @Gtk.Template.Callback()
     def on_leaflet_back(self, widget):
-        if self.leaflet.get_folded():
-            self.leaflet.navigate(Adw.NavigationDirection.BACK)
+        if self.page2_leaflet.get_folded():
+            self.page2_leaflet.navigate(Adw.NavigationDirection.BACK)
 
     @Gtk.Template.Callback()
     def on_flap_toggled(self, widget):
