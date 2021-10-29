@@ -26,11 +26,11 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('new', self.menu_handler)
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
-        self.add_viewswitcher()
-        self.add_leaflet()
-        self.add_listbox()
+        self.add_page1()
+        self.add_page2()
+        self.add_page3()
 
-    def add_viewswitcher(self):
+    def add_page1(self):
         self.page1_switch.set_policy(Adw.ViewSwitcherPolicy.WIDE)
         for num in ['1', '2', '3']:
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -48,32 +48,8 @@ class MainWindow(Adw.ApplicationWindow):
             page = self.page1_content.add_named(box, name)
             page.set_title(title)
             page.set_icon_name('media-record-symbolic')
-        # view_switchbar = Adw.ViewSwitcherBar()
-        # view_switchbar.set_stack(self.page1_content)
-        # view_switchbar.set_reveal(True)
-        # self.page1_box.append(view_switchbar)
 
-    def add_leaflet(self):
-        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        set_margin(box, 10)
-        btn = Gtk.Button()
-        btn.set_icon_name('media-seek-forward-symbolic')
-        btn.props.halign = Gtk.Align.START
-        btn.props.valign = Gtk.Align.START
-        btn.props.vexpand = False
-        btn.props.hexpand = False
-        btn.connect('clicked', self.on_leaflet_forward)
-        box.append(btn)
-
-        btn = Gtk.Button()
-        btn.set_icon_name('media-seek-backward-symbolic')
-        btn.props.halign = Gtk.Align.END
-        btn.props.valign = Gtk.Align.START
-        btn.props.vexpand = False
-        btn.props.hexpand = True
-        btn.connect('clicked', self.on_leaflet_back)
-        box.append(btn)
-        self.page2_box.append(box)
+    def add_page2(self):
         self.page2_box.append(Gtk.Separator())
         self.leaflet = Adw.Leaflet()
         btn = Gtk.Button()
@@ -95,7 +71,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.page2_box.append(self.leaflet)
         return self.page2_box
 
-    def add_listbox(self):
+    def add_page3(self):
         page = Adw.PreferencesPage()
         page.set_title('This is an PreferencePage')
         group = Adw.PreferencesGroup()
@@ -125,10 +101,12 @@ class MainWindow(Adw.ApplicationWindow):
         else:
             self.style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
 
+    @Gtk.Template.Callback()
     def on_leaflet_forward(self, widget):
         if self.leaflet.get_folded():
             self.leaflet.navigate(Adw.NavigationDirection.FORWARD)
 
+    @Gtk.Template.Callback()
     def on_leaflet_back(self, widget):
         if self.leaflet.get_folded():
             self.leaflet.navigate(Adw.NavigationDirection.BACK)

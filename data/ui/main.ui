@@ -72,6 +72,28 @@
                       <object class="GtkBox" id="page2_box">
                         <property name="orientation">vertical</property>
                         <child>
+                          <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkButton" id="btn_leaflet_forward">
+                                <property name="icon-name">media-seek-forward-symbolic</property>
+                                <property name="halign">start</property>
+                                <property name="valign">start</property>
+                                <signal name="clicked" handler="on_leaflet_forward" swapped="no" />
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="btn_leaflet_backward">
+                                <property name="icon-name">media-seek-backward-symbolic</property>
+                                <property name="halign">end</property>
+                                <property name="valign">end</property>
+                                <property name="hexpand">True</property>
+                                <signal name="clicked" handler="on_leaflet_back" swapped="no" />
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
                           <placeholder />
                         </child>
                       </object>
