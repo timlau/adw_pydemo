@@ -50,7 +50,19 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkSeparator"/>
+                          <object class="GtkSeparator" />
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">⇧ This is a ViewSwitcher</property>
+                            <property name="halign">start</property>
+                            <property name="valign">start</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <style>
+                              <class name="lbl_viewswitch" />
+                            </style>
+                          </object>
                         </child>
                         <child>
                           <object class="AdwViewStack" id="page1_content">
@@ -62,20 +74,7 @@
                                 <property name="child">
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label">⇧ This is a ViewSwitcher</property>
-                                        <property name="halign">start</property>
-                                        <property name="valign">start</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                        <style>
-                                          <class name="btn_view"/>
-                                        </style>
-                                      </object>
-                                    </child>
+                                    <child />
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="label">This is a ViewStack page #1</property>
@@ -83,19 +82,9 @@
                                         <property name="valign">center</property>
                                         <property name="hexpand">True</property>
                                         <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
-                                        <property name="halign">end</property>
-                                        <property name="valign">end</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-bottom">10</property>
-                                        <property name="margin-end">10</property>
+                                        <style>
+                                          <class name="lbl_center" />
+                                        </style>
                                       </object>
                                     </child>
                                   </object>
@@ -112,35 +101,14 @@
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
-                                        <property name="label">⇧ This is a ViewSwitcher</property>
-                                        <property name="halign">start</property>
-                                        <property name="valign">start</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
                                         <property name="label">This is a ViewStack page #2</property>
                                         <property name="halign">center</property>
                                         <property name="valign">center</property>
                                         <property name="hexpand">True</property>
                                         <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
-                                        <property name="halign">end</property>
-                                        <property name="valign">end</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-bottom">10</property>
-                                        <property name="margin-end">10</property>
+                                        <style>
+                                          <class name="lbl_center" />
+                                        </style>
                                       </object>
                                     </child>
                                   </object>
@@ -157,41 +125,32 @@
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkLabel">
-                                        <property name="label">⇧ This is a ViewSwitcher</property>
-                                        <property name="halign">start</property>
-                                        <property name="valign">start</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
                                         <property name="label">This is a ViewStack page #3</property>
                                         <property name="halign">center</property>
                                         <property name="valign">center</property>
                                         <property name="hexpand">True</property>
                                         <property name="vexpand">True</property>
-                                        <property name="margin-top">10</property>
-                                        <property name="margin-start">10</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label">This is a ViewSwitcherBar ⇩</property>
-                                        <property name="halign">end</property>
-                                        <property name="valign">end</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="vexpand">True</property>
-                                        <property name="margin-bottom">10</property>
-                                        <property name="margin-end">10</property>
+                                        <style>
+                                          <class name="lbl_center" />
+                                        </style>
                                       </object>
                                     </child>
                                   </object>
                                 </property>
                               </object>
                             </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">This is a ViewSwitcherBar ⇩</property>
+                            <property name="halign">end</property>
+                            <property name="valign">end</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <style>
+                              <class name="lbl_viewswitch" />
+                            </style>
                           </object>
                         </child>
                         <child>
@@ -263,6 +222,9 @@
                                 <property name="valign">center</property>
                                 <property name="hexpand">True</property>
                                 <property name="vexpand">True</property>
+                                <style>
+                                  <class name="lbl_resize" />
+                                </style>
                               </object>
                             </child>
                             <child>
@@ -295,7 +257,7 @@
                                 <property name="title">This is an PreferenceGroup</property>
                                 <property name="description">It contains a number of ActionRow's</property>
                                 <child>
-                                  <placeholder/>
+                                  <placeholder />
                                 </child>
                               </object>
                             </child>
@@ -304,7 +266,7 @@
                                 <property name="title">This is another PreferenceGroup</property>
                                 <property name="description">It contains a more ActionRow's</property>
                                 <child>
-                                  <placeholder/>
+                                  <placeholder />
                                 </child>
                               </object>
                             </child>

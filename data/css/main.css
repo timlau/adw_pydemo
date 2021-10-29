@@ -1,5 +1,19 @@
 /* Main CSS for application */
 
-.btn_view {
+.lbl_viewswitch {
     font-weight: bold;
+    margin: 10px;
+    font-size: 1.2em;
+}
+
+.lbl_center {
+    color: tomato;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.lbl_resize {
+    color: tomato;
+    font-size: 1.2em;
+    font-weight: bolder;
 }
