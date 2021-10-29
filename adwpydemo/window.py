@@ -77,18 +77,19 @@ class MainWindow(Adw.ApplicationWindow):
     def load_css(self):
         """create a provider for custom styling"""
         css_provider = Gtk.CssProvider()
-        css_path = f'{Constants.PATHID}/ui/main.ui'
+        css_path = f'{Constants.PATHID}/css/main.css'
         try:
             css_provider.load_from_resource(resource_path=css_path)
         except GLib.Error as e:
             print(f"Error loading CSS : {e} ")
             return None
         print(f'loading custom styling from resource: {css_path}')
+        # print(css_provider.to_string())
         return css_provider
 
     def _add_widget_styling(self, widget):
         if self.css_provider:
-            print(f'Adding style to : {widget.props.css_name}')
+            # print(f'Adding style to : {widget.props.css_name}')
             context = widget.get_style_context()
             context.add_provider(
                 self.css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
