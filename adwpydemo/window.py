@@ -31,7 +31,6 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('about', self.menu_handler)
         self.create_action('quit', self.menu_handler)
         self.add_page1()
-        self.add_page2()
         self.add_page3()
 
     def add_page1(self):
@@ -52,28 +51,6 @@ class MainWindow(Adw.ApplicationWindow):
             page = self.page1_content.add_named(box, name)
             page.set_title(title)
             page.set_icon_name('media-record-symbolic')
-
-    def add_page2(self):
-        # self.page2_box.append(Gtk.Separator())
-        # self.page2_leaflet = Adw.Leaflet()
-        btn = Gtk.Button()
-        btn.set_label("This is an Left/Start Button")
-        btn.props.halign = Gtk.Align.START
-        btn.props.valign = Gtk.Align.START
-        btn.props.vexpand = True
-        btn.props.hexpand = True
-        set_margin(btn, 10)
-        self.page2_leaflet.append(btn)
-        btn = Gtk.Button()
-        btn.set_label("This is a Right/End Button")
-        btn.props.halign = Gtk.Align.END
-        btn.props.valign = Gtk.Align.END
-        btn.props.vexpand = True
-        btn.props.hexpand = True
-        set_margin(btn, 10)
-        self.page2_leaflet.append(btn)
-        # self.page2_box.append(self.page2_leaflet)
-        return self.page2_box
 
     def add_page3(self):
         page = Adw.PreferencesPage()

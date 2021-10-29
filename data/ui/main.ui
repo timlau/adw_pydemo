@@ -72,8 +72,13 @@
                       <object class="GtkBox" id="page2_box">
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkBox" id="page2_buttons">
                             <property name="orientation">horizontal</property>
+                            <property name="margin-top">10</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="margin-start">10</property>
+                            <property name="margin-end">10</property>
+                            <property name="visible" bind-source="page2_leaflet" bind-property="folded" bind-flags="sync-create" />
                             <child>
                               <object class="GtkButton" id="btn_leaflet_forward">
                                 <property name="icon-name">media-seek-forward-symbolic</property>
@@ -94,11 +99,41 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkSeparator"/>
+                          <object class="GtkSeparator" />
                         </child>
                         <child>
                           <object class="AdwLeaflet" id="page2_leaflet">
-                            <placeholder />
+                            <property name="margin-top">10</property>
+                            <property name="margin-bottom">10</property>
+                            <property name="margin-start">10</property>
+                            <property name="margin-end">10</property>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="label">This is an Left/Start Button</property>
+                                <property name="halign">start</property>
+                                <property name="valign">start</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Resize the window</property>
+                                <property name="halign">start</property>
+                                <property name="valign">center</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="label">This is a Right/End Button</property>
+                                <property name="halign">end</property>
+                                <property name="valign">end</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
