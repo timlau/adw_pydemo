@@ -1,7 +1,7 @@
 from gi.repository import Gtk, Gio, Adw, GLib
 
 from adwpydemo.const import Constants
-from adwpydemo.functions import get_label, get_label_bottom, get_label_top, set_margin
+from adwpydemo.functions import get_action_row
 
 
 @Gtk.Template(resource_path=f'{Constants.PATHID}/ui/main.ui')
@@ -13,14 +13,16 @@ class MainWindow(Adw.ApplicationWindow):
     stack = Gtk.Template.Child()
     stack_switch = Gtk.Template.Child()
     # Page1 widgets
-    page1_box  = Gtk.Template.Child()
-    page1_switch  = Gtk.Template.Child()
-    page1_content  = Gtk.Template.Child()
+    page1_box = Gtk.Template.Child()
+    page1_switch = Gtk.Template.Child()
+    page1_content = Gtk.Template.Child()
     # Page2 widgets
-    page2_box  = Gtk.Template.Child()
-    page2_leaflet  = Gtk.Template.Child()    
+    page2_box = Gtk.Template.Child()
+    page2_leaflet = Gtk.Template.Child()
     # Page3 widgets
-    page3_box  = Gtk.Template.Child()
+    page3_box = Gtk.Template.Child()
+    page3_pref_grp1 = Gtk.Template.Child()
+    page3_pref_grp2 = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
@@ -32,29 +34,13 @@ class MainWindow(Adw.ApplicationWindow):
         self.create_action('quit', self.menu_handler)
         self.add_page3()
 
-
     def add_page3(self):
-        page = Adw.PreferencesPage()
-        page.set_title('This is an PreferencePage')
-        group = Adw.PreferencesGroup()
-        group.set_title('This is an PreferenceGroup')
-        group.set_description("It contains a number of ActionRow's")
-        page.add(group)
-        for x in range(10):
-            title = f'Action {x+1}'
-            row = Adw.ActionRow()
-            row.set_title(title)
-            row.set_subtitle(f"This is an action, named {title}")
-            row.set_icon_name('find-location-symbolic')
-            switch = Gtk.Switch()
-            switch.props.halign = Gtk.Align.CENTER
-            switch.props.valign = Gtk.Align.CENTER
-            switch.props.hexpand = False
-            switch.props.vexpand = False
-            switch.set_active(x % 2 == 0)
-            row.add_suffix(switch)
-            group.add(row)
-        self.page3_box.append(page)
+        for x in range(5):
+            row = get_action_row(x+1)
+            self.page3_pref_grp1.add(row)
+        for x in range(5):
+            row = get_action_row(x+1)
+            self.page3_pref_grp2.add(row)
 
     @Gtk.Template.Callback()
     def on_color_switch(self, *args):

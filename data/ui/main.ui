@@ -14,6 +14,7 @@
             <child type="start">
               <object class="GtkToggleButton" id="flap_toggle">
                 <property name="icon-name">sidebar-show-right-rtl-symbolic</property>
+                <property name="active">True</property>
                 <signal name="toggled" handler="on_flap_toggled" swapped="no" />
               </object>
             </child>
@@ -284,7 +285,27 @@
                       <object class="GtkBox" id="page3_box">
                         <property name="orientation">vertical</property>
                         <child>
-                          <placeholder />
+                          <object class="AdwPreferencesPage">
+                            <property name="title">This is an PreferencePage</property>
+                            <child>
+                              <object class="AdwPreferencesGroup" id="page3_pref_grp1">
+                                <property name="title">This is an PreferenceGroup</property>
+                                <property name="description">It contains a number of ActionRow's</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwPreferencesGroup" id="page3_pref_grp2">
+                                <property name="title">This is another PreferenceGroup</property>
+                                <property name="description">It contains a more ActionRow's</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
                         </child>
                       </object>
                     </property>
