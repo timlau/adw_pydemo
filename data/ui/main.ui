@@ -14,6 +14,7 @@
             <child type="start">
               <object class="GtkToggleButton" id="flap_toggle">
                 <property name="icon-name">sidebar-show-right-rtl-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Show/Hide the sidebar</property>                
                 <property name="active">True</property>
                 <signal name="toggled" handler="on_flap_toggled" swapped="no" />
               </object>
@@ -21,6 +22,7 @@
             <child type="start">
               <object class="GtkButton" id="color_scheme_button">
                 <property name="icon-name">weather-clear-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Switch Dark/Light mode</property>                
                 <signal name="clicked" handler="on_color_switch" swapped="no" />
               </object>
             </child>

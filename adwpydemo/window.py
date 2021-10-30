@@ -68,11 +68,14 @@ class MainWindow(Adw.ApplicationWindow):
     def on_button_clicked(self, widget):
         label = widget.get_label()
         print(f'Button {label} Pressed')
+        
 
     def menu_handler(self, action, state):
         """ Callback for  menu actions"""
         name = action.get_name()
         print(f'active : {name}')
+        if name == 'quit':
+            self.close()
 
     def load_css(self):
         """create a provider for custom styling"""
