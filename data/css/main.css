@@ -13,7 +13,9 @@
 }
 
 .lbl_resize {
-    color: tomato;
+    color: white;
+    background-color: orchid;
     font-size: 1.2em;
     font-weight: bolder;
+    padding: 20px;
 }

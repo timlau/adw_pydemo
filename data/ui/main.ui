@@ -14,7 +14,7 @@
             <child type="start">
               <object class="GtkToggleButton" id="flap_toggle">
                 <property name="icon-name">sidebar-show-right-rtl-symbolic</property>
-                <property name="tooltip-text" translatable="yes">Show/Hide the sidebar</property>                
+                <property name="tooltip-text" translatable="yes">Show/Hide the sidebar</property>
                 <property name="active">True</property>
                 <signal name="toggled" handler="on_flap_toggled" swapped="no" />
               </object>
@@ -22,7 +22,7 @@
             <child type="start">
               <object class="GtkButton" id="color_scheme_button">
                 <property name="icon-name">weather-clear-symbolic</property>
-                <property name="tooltip-text" translatable="yes">Switch Dark/Light mode</property>                
+                <property name="tooltip-text" translatable="yes">Switch Dark/Light mode</property>
                 <signal name="clicked" handler="on_color_switch" swapped="no" />
               </object>
             </child>
@@ -36,6 +36,7 @@
         </child>
         <child>
           <object class="AdwFlap" id="flap">
+            <property name="locked">True</property>
             <child type="content">
               <object class="GtkStack" id="stack">
                 <child>
@@ -175,10 +176,6 @@
                         <child>
                           <object class="GtkBox" id="page2_buttons">
                             <property name="orientation">horizontal</property>
-                            <property name="margin-top">10</property>
-                            <property name="margin-bottom">10</property>
-                            <property name="margin-start">10</property>
-                            <property name="margin-end">10</property>
                             <property name="visible" bind-source="page2_leaflet" bind-property="folded" bind-flags="sync-create" />
                             <child>
                               <object class="GtkButton" id="btn_leaflet_backward">
@@ -197,6 +194,9 @@
                                 <signal name="clicked" handler="on_leaflet_forward" swapped="no" />
                               </object>
                             </child>
+                            <style>
+                              <class name="toolbar" />
+                            </style>
                           </object>
                         </child>
                         <child>
@@ -220,12 +220,14 @@
                             <child>
                               <object class="GtkLabel">
                                 <property name="label">Resize the window</property>
-                                <property name="halign">start</property>
+                                <property name="halign">center</property>
                                 <property name="valign">center</property>
                                 <property name="hexpand">True</property>
                                 <property name="vexpand">True</property>
                                 <style>
                                   <class name="lbl_resize" />
+                                  <class name="card" />
+
                                 </style>
                               </object>
                             </child>
@@ -286,12 +288,19 @@
             <child type="flap">
               <object class="GtkStackSidebar" id="stack_switch">
                 <property name="stack">stack</property>
+                <style>
+                  <class name="background" />
+                </style>
               </object>
             </child>
           </object>
         </child>
       </object>
     </child>
+    <style>
+      <class name="devel" />
+    </style>
+
   </template>
 
   <!-- Main App menu -->
