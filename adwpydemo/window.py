@@ -27,6 +27,8 @@ class MainWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         Adw.ApplicationWindow.__init__(self, **kwargs)
         self.style_manager = Adw.StyleManager().get_default()
+        print(self.style_manager.get_system_supports_color_schemes())
+        self.style_manager.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
 
         # # setup menu actions
         self.create_action('new', self.menu_handler)

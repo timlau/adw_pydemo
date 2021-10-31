@@ -27,10 +27,11 @@ from adwpydemo.window import MainWindow
 
 APP_ID = 'dk.rasmil.AdwPyDemo'
 
+
 class Application(Adw.Application):
     def __init__(self):
         Adw.Application.__init__(self, application_id=APP_ID,
-                         flags=Gio.ApplicationFlags.FLAGS_NONE)
+                                 flags=Gio.ApplicationFlags.FLAGS_NONE)
 
     def do_activate(self):
         win = self.props.active_window
