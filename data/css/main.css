@@ -8,14 +8,12 @@
 
 .lbl_center {
     color: tomato;
-    font-size: 2em;
-    font-weight: bolder;
+    background-color: lightgray;
+    padding: 20px;
 }
 
 .lbl_resize {
     color: white;
     background-color: orchid;
-    font-size: 1.2em;
-    font-weight: bolder;
     padding: 20px;
 }

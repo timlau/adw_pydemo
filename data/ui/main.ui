@@ -4,7 +4,7 @@
   <requires lib="libadwaita" version="1.0" />
   <template class="MainWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Adwaita PythonDemo</property>
-    <property name="default_width">800</property>
+    <property name="default_width">900</property>
     <property name="default_height">800</property>
     <child>
       <object class="GtkBox" id="main_content">
@@ -12,11 +12,11 @@
         <child>
           <object class="AdwHeaderBar">
             <child type="start">
-              <object class="GtkToggleButton" id="flap_toggle">
+              <object class="GtkButton" id="flap_toggle">
                 <property name="icon-name">sidebar-show-right-rtl-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Show/Hide the sidebar</property>
-                <property name="active">True</property>
-                <signal name="toggled" handler="on_flap_toggled" swapped="no" />
+                <!-- <property name="active">True</property> -->
+                <signal name="clicked" handler="on_flap_toggled" swapped="no" />
               </object>
             </child>
             <child type="start">
@@ -87,6 +87,8 @@
                                         <property name="vexpand">True</property>
                                         <style>
                                           <class name="lbl_center" />
+                                          <class name="card" />
+                                          <class name="title-1" />
                                         </style>
                                       </object>
                                     </child>
@@ -111,6 +113,8 @@
                                         <property name="vexpand">True</property>
                                         <style>
                                           <class name="lbl_center" />
+                                          <class name="card" />
+                                          <class name="title-1" />
                                         </style>
                                       </object>
                                     </child>
@@ -135,6 +139,8 @@
                                         <property name="vexpand">True</property>
                                         <style>
                                           <class name="lbl_center" />
+                                          <class name="card" />
+                                          <class name="title-1" />
                                         </style>
                                       </object>
                                     </child>
@@ -227,7 +233,7 @@
                                 <style>
                                   <class name="lbl_resize" />
                                   <class name="card" />
-
+                                  <class name="title-1" />
                                 </style>
                               </object>
                             </child>
