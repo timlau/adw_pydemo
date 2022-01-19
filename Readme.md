@@ -18,9 +18,14 @@ Run the following to build, install & run the application on your system
 
 ## Flatpak
 
+Enable the [gnome-nightly](https://wiki.gnome.org/Apps/Nightly) flatpak repository
+```bash
+flatpak remote-add --if-not-exists gnome-nightly https://nightly.gnome.org/gnome-nightly.flatpakrepo
+```
+
 Install needed flatpak Platform & SDK
 ```bash
-flatpak install flathub org.gnome.Platform//41 org.gnome.Sdk//41
+flatpak install gnome-nightly org.gnome.Platform//master org.gnome.Sdk//master
 ```
 
 Build flatpak
