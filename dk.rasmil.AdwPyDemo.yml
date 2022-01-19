@@ -1,6 +1,6 @@
 app-id: dk.rasmil.AdwPyDemo
 runtime: org.gnome.Platform
-runtime-version: "41"
+runtime-version: "master"
 sdk: org.gnome.Sdk
 command: adwpydemo
 finish-args:
